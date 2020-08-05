@@ -1,0 +1,26 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.batch.android.plugin.hms">
+
+    <application>
+
+        <meta-data android:name="com.batch.android.plugin.hms.version" android:value="${versionName}" />
+
+        <service
+            android:name="com.batch.android.push.PushRegistrationDiscoveryService"
+            android:exported="false">
+            <meta-data
+                android:name="com.batch.android.push:com.batch.android.plugin.hms.BatchHmsPushRegistrationRegistrar"
+                android:value="com.batch.android.push.PushRegistrationRegistrar" />
+        </service>
+
+        <service
+            android:name=".BatchHmsMessageService"
+            android:exported="false">
+            <intent-filter android:priority="-100" >
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>

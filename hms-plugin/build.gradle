@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+
+ext {
+    mavenGroupId = 'com.batch.android'
+    mavenArtifact = 'hms-plugin'
+    androidXLibraryVersion = '1.0.0'
+}
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0.0-beta1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+        manifestPlaceholders += [ versionName: defaultConfig.versionName ]
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            all {
+                testLogging {
+                    events "started", "passed", "skipped", "failed"
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    api 'com.batch.android:batch-sdk:1.16.0-beta1'
+    api 'com.huawei.hms:push:4.0.4.301'
+    implementation "androidx.annotation:annotation:$androidXLibraryVersion"
+
+    // Optional
+    compileOnly 'com.huawei.hms:ads-identifier:3.4.30.307'
+
+    // To include the Batch SDK, we need to add Firebase at compile time
+    compileOnly "com.google.firebase:firebase-core:17.4.3"
+    compileOnly "com.google.firebase:firebase-messaging:20.2.1"
+
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'androidx.test.ext:junit:1.1.1'
+    testImplementation 'org.mockito:mockito-core:3.2.4'
+    testImplementation 'org.robolectric:robolectric:4.4'
+    testImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+apply from: 'maven-publish.gradle'
+apply from: 'jacoco.gradle'
+//apply from: 'sonar.gradle'

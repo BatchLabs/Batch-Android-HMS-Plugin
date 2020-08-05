@@ -1,0 +1,3 @@
+include ':hms-sample'
+include ':hms-plugin'
+rootProject.name = "batch-hms-plugin"
