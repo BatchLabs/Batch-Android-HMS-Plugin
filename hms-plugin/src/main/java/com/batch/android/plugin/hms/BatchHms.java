@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -138,26 +139,24 @@ public final class BatchHms {
 
         /**
          * Call this method to display the notification for this message.
+         *
+         * Note that this method will spawn a new thread if ran on the main thread, and thus
+         * becomes asynchronous.
          * @param context Context
          * @param remoteMessage The Huawei message
          */
         public static void displayNotification(Context context,
                                                RemoteMessage remoteMessage)
         {
-            Bundle extras = PushHelper.huaweiMessageToReceiverBundle(remoteMessage);
-            if (extras == null) {
-                extras = new Bundle();
-            }
-
-            Intent intent = new Intent();
-            intent.replaceExtras(extras);
-
-            Batch.Push.displayNotification(context, intent, true);
+            displayNotification(context, remoteMessage, null);
         }
 
         /**
          * Call this method to display the notification for this message.
          * Allows an interceptor to be set for this call, overriding the global one set using {@link Batch.Push#setNotificationInterceptor(BatchNotificationInterceptor)}
+         *
+         * Note that this method will spawn a new thread if ran on the main thread, and thus
+         * becomes asynchronous.
          *
          * @param context Context
          * @param remoteMessage The Huawei message
@@ -175,7 +174,13 @@ public final class BatchHms {
             Intent intent = new Intent();
             intent.replaceExtras(extras);
 
-            Batch.Push.displayNotification(context, intent, interceptor, true);
+            final Runnable r = () -> Batch.Push.displayNotification(context, intent, interceptor, true);
+            if (Thread.currentThread().equals(Looper.getMainLooper().getThread())) {
+                // We're on the main thread, spawn a new one so that image downloads work
+                new Thread(r).start();
+            } else {
+                r.run();
+            }
         }
 
         /**
