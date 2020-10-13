@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="hms-test" type="AndroidJUnit" factoryName="Android JUnit">
-    <module name="hms-plugin" />
+    <module name="batch-hms-plugin.hms-plugin" />
     <useClassPathOnly />
     <option name="PACKAGE_NAME" value="com.batch.android.plugin.hms" />
     <option name="MAIN_CLASS_NAME" value="" />
