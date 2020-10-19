@@ -39,7 +39,7 @@ android {
 }
 
 dependencies {
-    api 'com.batch.android:batch-sdk:1.16.0-beta1'
+    api 'com.batch.android:batch-sdk:1.16.0'
     api 'com.huawei.hms:push:4.0.4.301'
     implementation "androidx.annotation:annotation:$androidXLibraryVersion"
 
