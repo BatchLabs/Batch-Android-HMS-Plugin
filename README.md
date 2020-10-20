@@ -1,8 +1,7 @@
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.batch.android/hms-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.batch.android/hms-sdk)
-[![Github Action](https://github.com/BatchLabs/Batch-Android-HMS-SDK/workflows/Android%20CI/badge.svg)](https://github.com/BatchLabs/Batch-Android-HMS-SDK/actions?query=workflow%3A%22Android+CI%22)
-[![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=BatchLabs_Batch-Android-HMS-SDK&metric=coverage)](https://sonarcloud.io/dashboard?id=BatchLabs_Batch-Android-HMS-SDK)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.batch.android/hms-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.batch.android/hms-plugin)
+[![Github Action](https://github.com/BatchLabs/Batch-Android-HMS-Plugin/workflows/Android%20CI/badge.svg)](https://github.com/BatchLabs/Batch-Android-HMS-Plugin/actions?query=workflow%3A%22Android+CI%22)
 
-Batch.com Android Huawei Mobile Services SDK
+Batch.com Android Huawei Mobile Services Plugin
 ==================
 
 ![Logo](http://batch-doc.s3.amazonaws.com/logo_batch_192.gif)
@@ -21,7 +20,7 @@ The Batch HMS plugin display push notifications sent from the Batch dashboard on
 Gradle (recommended)
 
 ```
-implementation 'com.batch.android:hms-sdk:1.0+'
+implementation 'com.batch.android:hms-plugin:1.0+'
 ```
 
 Read our [setup documentation](https://doc.batch.com/) to follow a step by step tutorial for integrating Batch features into your app.

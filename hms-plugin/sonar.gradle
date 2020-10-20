@@ -8,9 +8,9 @@ sonarqube {
         //    "$buildDir/intermediates/exploded-aar/**/classes.jar"
         // }
 
-        property "sonar.projectName", "Android HMS SDK"
+        property "sonar.projectName", "Android HMS Plugin"
         property "sonar.projectDescription", "Batch.com's Batch.com's Android Huawei Mobile Services main artifact"
-        property "sonar.projectKey", "BatchLabs_Batch-Android-HMS-SDK"
+        property "sonar.projectKey", "BatchLabs_Batch-Android-HMS-Plugin"
         property "sonar.projectVersion", project.android.defaultConfig.versionName
         property "sonar.organization", "batch"
         property "sonar.host.url", "https://sonarcloud.io"
