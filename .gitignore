@@ -13,3 +13,4 @@ release/
 !/.idea/runConfigurations/
 /maven.properties
 /batch-maven-secret-gpg.key
+/batch-maven-ownertrust-gpg.txt
