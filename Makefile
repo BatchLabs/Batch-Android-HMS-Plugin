@@ -32,4 +32,4 @@ ci: clean lint test-coverage aar
 publish: aar
 	./gradlew :hms-plugin:publish
 
-.PHONY: ci sonar check-token
+.PHONY: ci sonar check-token aar clean
