@@ -11,13 +11,11 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.batch.android.AdsIdentifierProvider;
 import com.batch.android.BatchPushService;
 import com.batch.android.PushRegistrationProvider;
 import com.batch.android.PushRegistrationProviderAvailabilityException;
 import com.huawei.agconnect.AGConnectOptions;
 import com.huawei.agconnect.AGConnectOptionsBuilder;
-import com.huawei.agconnect.config.AGConnectServicesConfig;
 import com.huawei.hms.aaid.HmsInstanceId;
 import com.huawei.hms.api.ConnectionResult;
 import com.huawei.hms.api.HuaweiApiAvailability;
@@ -30,7 +28,6 @@ public class BatchHmsPushRegistrationProvider implements PushRegistrationProvide
     private static final String MANIFEST_APP_ID_KEY = "batch_push_hms_app_id_override";
 
     private final Context context;
-    private AdsIdentifierProvider adsIdentifierProvider;
     private String appID;
 
     private static String cachedToken = null;
@@ -42,7 +39,6 @@ public class BatchHmsPushRegistrationProvider implements PushRegistrationProvide
     BatchHmsPushRegistrationProvider(Context context) {
         this.context = context;
         this.appID = fetchSenderID();
-        this.adsIdentifierProvider = new BatchHmsAdsIdentifierProvider(context);
     }
 
     public String fetchSenderID() {
@@ -119,11 +115,6 @@ public class BatchHmsPushRegistrationProvider implements PushRegistrationProvide
             throw new PushRegistrationProviderAvailabilityException(
                     "com.batch.android.BatchPushService is missing from the manifest.");
         }
-    }
-
-    @Override
-    public AdsIdentifierProvider getAdsIdentifierProvider() {
-        return adsIdentifierProvider;
     }
 
     @Nullable
