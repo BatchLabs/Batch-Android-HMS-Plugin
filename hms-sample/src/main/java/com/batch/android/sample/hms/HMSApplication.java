@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.batch.android.Batch;
 import com.batch.android.BatchActivityLifecycleHelper;
-import com.batch.android.Config;
 
 public class HMSApplication extends Application {
 
@@ -12,7 +11,7 @@ public class HMSApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Batch.setConfig(new Config(BuildConfig.API_KEY));
+        Batch.start(BuildConfig.API_KEY);
         registerActivityLifecycleCallbacks(new BatchActivityLifecycleHelper());
     }
 }
