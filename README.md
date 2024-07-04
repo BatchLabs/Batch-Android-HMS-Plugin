@@ -15,6 +15,7 @@ The Batch HMS plugin display push notifications sent from the Batch dashboard on
  - Android 21+
  - Batch Android SDK 2.0+
  - HMS Push Kit SDK 6.5.300+
+ - HMS AppGallery Connect Plugin 1.9.1.300+
 
 # Installation
 Gradle (recommended)
