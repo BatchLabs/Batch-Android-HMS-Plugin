@@ -43,7 +43,7 @@ task testDebugCoverageUnitTest(dependsOn: ['instrument', 'testDebugUnitTest']) {
             structure(name: 'HmsCoverage') {
                 classfiles {
                     fileset(
-                            dir: "$buildDir/intermediates/javac/debug/classes",
+                            dir: "$buildDir/intermediates/javac/debug/compileDebugJavaWithJavac/classes",
                             excludes: '**/R.class,**/R$*.class,**/BuildConfig.*'
                     )
                 }
@@ -83,7 +83,7 @@ task instrument(dependsOn:'compileDebugUnitTestSources') {
                 classpath: configurations.jacocoAnt.asPath)
 
         ant.instrument(destdir: offline_instrumented_outputDir) {
-            fileset(dir: "$buildDir.path/intermediates/javac/debug/classes")
+            fileset(dir: "$buildDir.path/intermediates/javac/debug/compileDebugJavaWithJavac/classes")
         }
     }
 }
