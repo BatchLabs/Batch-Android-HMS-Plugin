@@ -7,11 +7,11 @@ ext {
 }
 
 android {
-    compileSdkVersion 30
     namespace = "com.batch.android.plugin.hms"
     defaultConfig {
         minSdkVersion 17
-        targetSdkVersion 30
+        compileSdk 34
+        targetSdkVersion 34
         versionCode 1
         versionName "1.1.0"
 
@@ -39,16 +39,14 @@ android {
 }
 
 dependencies {
-    api 'com.batch.android:batch-sdk:1.16.0'
+    api 'com.batch.android:batch-sdk:2.0+'
     api 'com.huawei.hms:push:6.5.0.300'
     implementation "androidx.annotation:annotation:$androidXLibraryVersion"
 
     // Optional
     compileOnly 'com.huawei.hms:ads-identifier:3.4.30.307'
 
-    // To include the Batch SDK, we need to add Firebase at compile time
-    compileOnly "com.google.firebase:firebase-core:17.4.3"
-    compileOnly "com.google.firebase:firebase-messaging:20.2.1"
+    compileOnly "com.google.firebase:firebase-messaging:22.0.0"
 
     testImplementation 'junit:junit:4.13'
     testImplementation 'androidx.test.ext:junit:1.1.1'
