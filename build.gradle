@@ -3,12 +3,12 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven { url 'http://developer.huawei.com/repo/' }
+        maven { url 'https://developer.huawei.com/repo/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:8.3.0'
         classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8'
-        classpath 'com.huawei.agconnect:agcp:1.4.1.300'
+        classpath 'com.huawei.agconnect:agcp:1.9.1.302'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
