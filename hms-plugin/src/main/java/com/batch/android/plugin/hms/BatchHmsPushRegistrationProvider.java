@@ -15,6 +15,8 @@ import com.batch.android.AdsIdentifierProvider;
 import com.batch.android.BatchPushService;
 import com.batch.android.PushRegistrationProvider;
 import com.batch.android.PushRegistrationProviderAvailabilityException;
+import com.huawei.agconnect.AGConnectOptions;
+import com.huawei.agconnect.AGConnectOptionsBuilder;
 import com.huawei.agconnect.config.AGConnectServicesConfig;
 import com.huawei.hms.aaid.HmsInstanceId;
 import com.huawei.hms.api.ConnectionResult;
@@ -27,7 +29,7 @@ public class BatchHmsPushRegistrationProvider implements PushRegistrationProvide
 
     private static final String MANIFEST_APP_ID_KEY = "batch_push_hms_app_id_override";
 
-    private Context context;
+    private final Context context;
     private AdsIdentifierProvider adsIdentifierProvider;
     private String appID;
 
@@ -37,15 +39,13 @@ public class BatchHmsPushRegistrationProvider implements PushRegistrationProvide
         cachedToken = token;
     }
 
-    BatchHmsPushRegistrationProvider(Context context)
-    {
+    BatchHmsPushRegistrationProvider(Context context) {
         this.context = context;
         this.appID = fetchSenderID();
         this.adsIdentifierProvider = new BatchHmsAdsIdentifierProvider(context);
     }
 
-    public String fetchSenderID()
-    {
+    public String fetchSenderID() {
         try {
             final Bundle metaData = context
                     .getPackageManager()
@@ -66,14 +66,8 @@ public class BatchHmsPushRegistrationProvider implements PushRegistrationProvide
         }
 
         try {
-            AGConnectServicesConfig agConnectServicesConfig = AGConnectServicesConfig.fromContext(context);
-            if (agConnectServicesConfig == null) {
-                Log.e(BatchHms.TAG,
-                        "Push - Could not register for HMS Push: Could not get a AGConnect instance. Is your AGConnect/HMSPush project configured?");
-                return null;
-            }
-
-            String appID = agConnectServicesConfig.getString("client/app_id");
+            AGConnectOptions agConnectOptions = new AGConnectOptionsBuilder().build(context);
+            appID = agConnectOptions.getString("client/app_id");
             if (TextUtils.isEmpty(appID)) {
                 Log.e(BatchHms.TAG,
                         "Push - Could not register for HMS Push: Could not get a Sender ID for this project. Are notifications well configured in the project's console and your agconnect-services.json up to date?");
@@ -82,9 +76,7 @@ public class BatchHmsPushRegistrationProvider implements PushRegistrationProvide
 
             return appID;
         } catch (NoClassDefFoundError | Exception e) {
-            Log.e(BatchHms.TAG,
-                    "Push - Could not register for HMS Push: AGConnect has thrown an exception",
-                    e);
+            Log.e(BatchHms.TAG, "Push - Could not register for HMS Push: AGConnect has thrown an exception", e);
         }
 
         return null;
