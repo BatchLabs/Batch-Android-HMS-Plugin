@@ -9,4 +9,5 @@
 -keep class com.huawei.updatesdk.**{*;}
 -keep class com.huawei.hms.**{*;}
 -keep class com.huawei.hms.ads.** { *; }
+-keep class com.huawei.hms.api.** { *; }
 -keep interface com.huawei.hms.ads.** { *; }
